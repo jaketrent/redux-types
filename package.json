@@ -1,0 +1,44 @@
+{
+  "name": "redux-action-types",
+  "description": "Namespace type strings for redux dispatcher",
+  "main": "index.js",
+  "scripts": {
+    "commit": "git-cz",
+    "compile": "babel src/ --source-maps --debug --out-dir lib/",
+    "prepublish": "npm run compile",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "test": "echo \"No tests specified; Everything is fine.\" && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jaketrent/redux-action-types.git"
+  },
+  "keywords": [
+    "redux",
+    "react",
+    "flux",
+    "action",
+    "types",
+    "actions",
+    "types"
+  ],
+  "author": "jaketrent",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jaketrent/redux-action-types/issues"
+  },
+  "homepage": "https://github.com/jaketrent/redux-action-types#readme",
+  "devDependencies": {
+    "babel-cli": "^6.4.5",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-stage-0": "^6.3.13",
+    "commitizen": "^2.4.6",
+    "cz-conventional-changelog": "^1.1.5",
+    "semantic-release": "^4.3.5"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-conventional-changelog"
+    }
+  }
+}
