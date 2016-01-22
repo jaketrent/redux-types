@@ -1,4 +1,4 @@
-# redux-action-types
+# redux-types
 
 Allows easy, consistent, and readable namespacing of redux actions.
 
@@ -11,7 +11,7 @@ This library ensures that you follow this pattern, producing clean, readable act
 ## Install
 
 ```
-npm install redux-action-types --save-dev
+npm install redux-types --save-dev
 ```
 
 ## Usage
@@ -19,9 +19,9 @@ npm install redux-action-types --save-dev
 In your action `types.js` definition module, you might write:
 
 ```js
-import actionTypes from 'redux-action-types'
+import types from 'redux-types'
 
-export default actionTypes('posts',
+export default types('posts',
   'CREATE',
   'FETCH',
   'EDIT',
