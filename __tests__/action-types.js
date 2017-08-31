@@ -1,25 +1,27 @@
-import actionTypes from '../src/action-types';
+import { testActionTypes } from '../src/action-types-array';
 import { TypeError, UnicityError } from '../src/errors';
-const arrayToTest = ['iijij', 'ijijijj', 'kogifkp'];
-const arrayToTest2 = [
-  ...arrayToTest,
-  {
-    hoi: 'ok',
-  },
-];
-const arrayToTest3 = [...arrayToTest, 'iijij'];
+// ------------------------------------ //
+const arrayToTest = ['one', 'two', 'three'];
+const arrayToTest2 = [...arrayToTest, 77];
+const arrayToTest3 = [...arrayToTest, 'two'];
 const PREFIX = 'SomePrefix';
-
+// ------------------------------------ //
 describe('hey', () => {
   it('should run without error !', () => {
-    const shouldRunOk = actionTypes(PREFIX, ...arrayToTest);
-    console.warn(shouldRunOk);
-    expect(shouldRunOk);
+    const expectedResult = {
+      one: 'SomePrefix/one',
+      two: 'SomePrefix/two',
+      three: 'SomePrefix/three',
+    };
+    const shouldRunOk = testActionTypes(PREFIX, ...arrayToTest);
+    expect(shouldRunOk).toEqual(expectedResult);
   });
   it('should throw an error saying args must be strings !', () => {
-    expect(() => actionTypes(PREFIX, ...arrayToTest2)).toThrow(TypeError);
+    expect(() => testActionTypes(PREFIX, ...arrayToTest2)).toThrow(TypeError);
   });
   it('should throw an error saying args must be uniques !', () => {
-    expect(() => actionTypes(PREFIX, ...arrayToTest3)).toThrow(UnicityError);
+    expect(() => testActionTypes(PREFIX, ...arrayToTest3)).toThrow(
+      UnicityError,
+    );
   });
 });
