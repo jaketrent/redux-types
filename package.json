@@ -3,25 +3,18 @@
   "description": "Namespace type strings for redux dispatcher",
   "main": "index.js",
   "scripts": {
+    "test": "jest",
     "commit": "git-cz",
     "compile": "babel src/ --source-maps --debug --out-dir lib/",
     "prepublish": "npm run compile",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-    "test": "echo \"No tests specified; Everything is fine.\" && exit 0"
+    "semantic-release":
+      "semantic-release pre && npm publish && semantic-release post"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/jaketrent/redux-types.git"
   },
-  "keywords": [
-    "redux",
-    "react",
-    "flux",
-    "action",
-    "types",
-    "actions",
-    "types"
-  ],
+  "keywords": ["redux", "react", "flux", "action", "types", "actions", "types"],
   "author": "jaketrent",
   "license": "MIT",
   "bugs": {
@@ -34,6 +27,10 @@
     "babel-preset-stage-0": "^6.3.13",
     "commitizen": "^2.4.6",
     "cz-conventional-changelog": "^1.1.5",
+    "eslint": "^4.5.0",
+    "eslint-config-esnext": "^1.6.0",
+    "eslint-plugin-jest": "^20.0.3",
+    "jest": "^20.0.4",
     "semantic-release": "^4.3.5"
   },
   "config": {
