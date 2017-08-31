@@ -1,17 +1,23 @@
-import { TypeError, UnicityError } from './errors.js';
-// ------------------------------------ //
+import { UniquenessErrorMessage, TypeErrorMessage } from './errors';
+
 const isString = arg => typeof arg === 'string' || arg instanceof String;
-// ------------------------------------ //
+
 const StringOrThrow = element => {
-  if (!isString(element)) throw new Error(TypeError);
+  if (!isString(element)) throw new Error(TypeErrorMessage);
 };
-// ------------------------------------ //
+
 const RaiseErrorIfNotUnique = array => {
-  if (array.length !== new Set(array).size) {
-    throw new Error(UnicityError);
+  const hash = {};
+  let duplicate = false;
+  for (let i = 0; i < array.length && !duplicate; i++) {
+    if (hash[array[i]]) {
+      duplicate = true;
+    }
+    hash[array[i]] = true;
   }
+  if (duplicate) throw new Error(UniquenessErrorMessage);
 };
-// ------------------------------------ //
+
 const actionTypesWithArray = (namespace, constants) => {
   RaiseErrorIfNotUnique(constants);
   return Object.freeze(
@@ -23,10 +29,3 @@ const actionTypesWithArray = (namespace, constants) => {
   );
 };
 export default actionTypesWithArray;
-
-// ------------------------------------ //
-// same as actual function without the console.warn, to keep the test log clean
-// only imported in __tests__ , not available on the package
-export const testActionTypes = (namespace, ...constants) =>
-  actionTypesWithArray(namespace, constants);
-// ------------------------------------ //

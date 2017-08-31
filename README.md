@@ -8,10 +8,6 @@ Action types for the redux dispatcher must be unique.  An easy way to get unique
 
 This library ensures that you follow this pattern, producing clean, readable action type namespacing.
 
-The function will throw an error if one of the args are not a string, or if you pass the same string twice. 
-
-For the next major release, the function will expect a string as first argument for the namespace, and and array of strings as second parameter for the types
-
 ## Install
 
 ```

@@ -1,2 +1,2 @@
-export const UnicityError = 'Args must be uniques !';
-export const TypeError = 'Arguments must be strings';
+export const UniquenessErrorMessage = 'Args must be uniques !';
+export const TypeErrorMessage = 'Arguments must be strings';
