@@ -12,10 +12,7 @@ const RaiseErrorIfNotUnique = array => {
   }
 };
 
-export default function actionTypes(namespace, ...constants) {
-  console.warn(
-    'For the next major release, the function will expect only two args : 1) prefix : <String> 2) types: Array<String> ',
-  );
+const actionTypesWithArray = (namespace, constants) => {
   RaiseErrorIfNotUnique(constants);
   return Object.freeze(
     constants.reduce((obj, constant) => {
@@ -24,4 +21,11 @@ export default function actionTypes(namespace, ...constants) {
       return obj;
     }, {}),
   );
+};
+
+export default function actionTypes(namespace, ...constants) {
+  console.warn(
+    'For the next major release, the function will expect only two args : 1) namespace : <String> 2) types: Array<String> ',
+  );
+  return actionTypesWithArray(namespace, constants);
 }
