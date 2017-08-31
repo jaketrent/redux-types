@@ -1,1 +1,1 @@
-module.exports = require('./lib/action-types');
+module.exports = require('./lib/action-types')
