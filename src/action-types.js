@@ -1,8 +1,5 @@
+import actionTypesWithArray from './action-types-array';
+
 export default function actionTypes(namespace, ...constants) {
-  return Object.freeze(
-    constants.reduce((obj, constant) => {
-      obj[constant] = `${namespace}/${constant}`;
-      return obj;        
-    }, {})
-  )
+  return actionTypesWithArray(namespace, constants);
 }

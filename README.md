@@ -13,6 +13,10 @@ This library ensures that you follow this pattern, producing clean, readable act
 ```
 npm install redux-types --save-dev
 ```
+or
+```
+yarn add -D redux-types
+```
 
 ## Usage
 
