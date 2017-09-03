@@ -37,7 +37,7 @@ You can also compose arrays for a better DRY styled code :
 ```js
 import types from 'redux-types'
 
-const CRUDTypes = ['CREATE', 'EDIT', 'DELETE']; // both could be 
+const CRUDTypes = ['CREATE', 'EDIT', 'DELETE']; // both arrays could be 
 const fetchTypes = ['FETCH_SUCCESS', 'FETCH_PENDING', 'FETCH_ERROR']; // imported from a constants file
 const someSpeficicAction = 'SPECIFIC';
 
