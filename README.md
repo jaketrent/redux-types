@@ -1,16 +1,14 @@
-# CAUTION
+# redux-types
 
-this is a fork of https://github.com/jaketrent/redux-types
+Allows easy, consistent, and readable namespacing of redux actions.
 
-<<<<<<< HEAD
-I use it only to contribute to the original repo.
-Please don't download this repo since it is current and temporary work.
-=======
 ## Why
 
 Action types for the redux dispatcher must be unique.  An easy way to get uniqueness is with a namespace.  It is common, for instance, that you would `FETCH` things into many reducers.  But each `FETCH` must be distinguishable to the dispatcher.  To solve this problem, we might namespace the types to be `posts/FETCH` and `comments/FETCH`, mapping to names of some models or features in our app.
 
 This library ensures that you follow this pattern, producing clean, readable action type namespacing.
+
+The function will throw an error if one of the args are not a string, or if you pass the same string twice. 
 
 ## Install
 
@@ -29,12 +27,23 @@ In your action `types.js` definition module, you might write:
 ```js
 import types from 'redux-types'
 
-export default types('posts',
-  'CREATE',
-  'FETCH',
-  'EDIT',
-  'DELETE'
-)
+const typesArray = ['CREATE', 'EDIT', 'DELETE'];
+
+export default types('posts', typesArray)
+```
+
+You can also compose arrays for a better DRY styled code :
+
+```js
+import types from 'redux-types'
+
+const CRUDTypes = ['CREATE', 'EDIT', 'DELETE']; // both could be 
+const fetchTypes = ['FETCH_SUCCESS', 'FETCH_PENDING', 'FETCH_ERROR']; // imported from a constants file
+const someSpeficicAction = 'SPECIFIC';
+
+export const PostTypes = [...CRUDTypes, ...fetchTypes, someSpeficicAction]; // exported for tests purposes
+
+export default types('posts', PostTypes)
 ```
 
 And then be able to use these in your `actions.js` creators:
@@ -49,4 +58,3 @@ export function createPost(post) {
   }
 }
 ```
->>>>>>> 23c65d8ee712a114dcdd529c0c89605f17b701a2
