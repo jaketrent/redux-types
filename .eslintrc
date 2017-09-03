@@ -1,0 +1,18 @@
+{
+  "extends": ["esnext"],
+  "globals": {
+    "console": true
+  },
+  "plugins": ["jest"],
+  "rules": {
+    "no-console": [
+      2,
+      {
+        "allow": ["warn", "error"]
+      }
+    ]
+  },
+  "env": {
+    "jest/globals": true
+  }
+}
