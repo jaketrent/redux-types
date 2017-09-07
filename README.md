@@ -8,6 +8,8 @@ Action types for the redux dispatcher must be unique.  An easy way to get unique
 
 This library ensures that you follow this pattern, producing clean, readable action type namespacing.
 
+The function will throw an error if one of the args are not a string, or if you pass the same string twice. 
+
 ## Install
 
 ```
@@ -25,12 +27,23 @@ In your action `types.js` definition module, you might write:
 ```js
 import types from 'redux-types'
 
-export default types('posts',
-  'CREATE',
-  'FETCH',
-  'EDIT',
-  'DELETE'
-)
+const typesArray = ['CREATE', 'EDIT', 'DELETE'];
+
+export default types('posts', typesArray)
+```
+
+You can also compose arrays for a better DRY styled code :
+
+```js
+import types from 'redux-types'
+
+const CRUDTypes = ['CREATE', 'EDIT', 'DELETE']; // both arrays could be 
+const fetchTypes = ['FETCH_SUCCESS', 'FETCH_PENDING', 'FETCH_ERROR']; // imported from a constants file
+const someSpeficicAction = 'SPECIFIC';
+
+export const PostTypes = [...CRUDTypes, ...fetchTypes, someSpeficicAction]; // exported for tests purposes
+
+export default types('posts', PostTypes)
 ```
 
 And then be able to use these in your `actions.js` creators:

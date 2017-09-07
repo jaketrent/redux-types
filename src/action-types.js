@@ -1,5 +1,22 @@
-import actionTypesWithArray from './action-types-array';
+import {
+  TypeErrorMessage,
+  ConstantsTypeErrorMessage,
+  NamespaceTypeErrorMessage,
+} from './errors';
 
-export default function actionTypes(namespace, ...constants) {
-  return actionTypesWithArray(namespace, constants);
-}
+import { isString, isArray } from './types-testers';
+import { matchTypeOrThrow, raiseErrorIfNotUnique } from './error-raisers';
+
+const actionTypes = (namespace, constants) => {
+  matchTypeOrThrow(namespace, isString, NamespaceTypeErrorMessage);
+  matchTypeOrThrow(constants, isArray, ConstantsTypeErrorMessage);
+  raiseErrorIfNotUnique(constants);
+  return Object.freeze(
+    constants.reduce((obj, constant) => {
+      matchTypeOrThrow(constant, isString, TypeErrorMessage);
+      obj[constant] = `${namespace}/${constant}`;
+      return obj;
+    }, {}),
+  );
+};
+export default actionTypes;
